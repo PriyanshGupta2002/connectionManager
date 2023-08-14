@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 import Image from 'next/image'
 
-const ProfessionalCertifications = () => {
+const ProfessionalCertifications = ({certifications}) => {
   return (
     <div className="mt-2 flex flex-col gap-3 border-2 border-borderSubCard p-3 rounded-xl">
         <div className="flex items-center justify-between my-2">
@@ -19,14 +19,17 @@ const ProfessionalCertifications = () => {
             width={35}
             height={35}
             />
-            <div className="flex flex-col items-center text-base text-professionalHeaderTextColor font-medium">
+            {certifications?.length > 0 ? (certifications.map((item,idx)=>(
+                <div className="flex flex-col items-center text-base text-professionalHeaderTextColor font-medium" key={idx}>
                 <span>
-                    Python
+                    {item.certificateName}
                 </span>
                 <span>
-                    Coding Ninjas
+                    {item.certificateCompanyName}
                 </span>
             </div>
+            ))):"Add Some certifications"}
+            
         </div>
     </div>
   )

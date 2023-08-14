@@ -6,7 +6,7 @@ export const POST = async (req) => {
   await connectToDb();
 
   try {
-    const { name, email, password, professionalDetails } = await req.json();
+    const { name, email, password, professionalDetails,phone,bio } = await req.json();
 
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
@@ -15,7 +15,7 @@ export const POST = async (req) => {
     }
 
     // Hash the password
-    const hashedPassword = giveHashPassword(password);
+    const hashedPassword = await giveHashPassword(password);
 
     // Create a new user instance
     const newUser = new User({
@@ -23,6 +23,8 @@ export const POST = async (req) => {
       email,
       password: hashedPassword,
       professionalDetails,
+      phone,
+      bio
     });
 
     // Save the new user to the database

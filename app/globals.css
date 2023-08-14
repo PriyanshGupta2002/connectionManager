@@ -21,6 +21,9 @@
     --border-subCard:rgba(0,0,0,0.15);
     --bio-text-color:rgba(73,69,79,0.80);
     --professional-header-text-color:rgba(73,69,79,0.80);
+    --primary-blue:#413B89;
+    --profile-avatar-border:#E8EFF7;
+    --loading-btn-bg-color:rgba(169, 169, 169, 0.7);
   }
 
   .cardShadowSecondary{

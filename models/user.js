@@ -26,6 +26,9 @@ const userSchema = new Schema({
     type: Number,
     required: [true, "Phone number is missing"],
   },
+  bio:{
+    type:String,
+  },
   professionalDetails: {
     skills: [skillsSchema],
     experiences: [experienceSchema],

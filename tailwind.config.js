@@ -30,7 +30,10 @@ module.exports = {
         borderSubCard:"var(--border-subCard)",
         labelTextColor:"var(--text-label-color)",
         bioTextColor:"var (--bio-text-color)",
-        professionalHeaderTextColor:"var(--professional-header-text-color)"
+        professionalHeaderTextColor:"var(--professional-header-text-color)",
+        primaryBlue:"var(--primary-blue)",
+        profileAvatarBorder:"var(--profile-avatar-border)",
+        loadingBtnBgColor:"var(--loading-btn-bg-color)"
       },
     },
   },

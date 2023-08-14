@@ -1,9 +1,8 @@
 import { connectToDb } from "@/lib/connect";
 import User from "@/models/user";
 
-export const GET = async (request, { params }) => {
-  const { id } = params;
-
+export const GET = async (req,{params}) => {
+  const {id} = params
   try {
     await connectToDb();
 
