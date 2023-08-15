@@ -1,7 +1,7 @@
 import { connectToDb } from "@/lib/connect";
 import User from "@/models/user";
 
-export const PUT = async (req, { params }) => {
+export const POST = async (req, { params }) => {
   const { toConnectId } = params;
   const { userId } = await req.json();
 

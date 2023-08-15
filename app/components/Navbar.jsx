@@ -1,11 +1,10 @@
 "use client"
 import Image from 'next/image'
 import React from 'react'
-import { signOut } from 'next-auth/react'
 import { useUserProvider } from '@/context/UserContext'
 
 const Navbar = () => {
-    const {userInfo} = useUserProvider()
+    const {userInfo,setShowSideBar} = useUserProvider()
   return (
     <nav className='sticky top-0 z-40 bg-white'>
         <div className="max-w-7xl p-5 lg:p-3 flex justify-between m-auto items-center">
@@ -16,6 +15,7 @@ const Navbar = () => {
                     height={24}
                     alt="menu"
                     className="cursor-pointer"
+                    onClick={()=>setShowSideBar(prevState=>!prevState)}
                     />
                     <Image
                     src={"/assets/logo.svg"}

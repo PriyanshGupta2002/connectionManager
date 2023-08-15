@@ -3,20 +3,21 @@
 import Image from "next/image";
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
 const page = () => {
   const [authType, setAuthType] = useState("login")
   return(
  
      <div className="w-full h-[100vh] flex items-center justify-center">
-      <div className="border-2 border-borderSubCard cardShadowSecondary p-4 w-[90%] md:w-[50%]  rounded-xl">
+      <div className={`border-2 border-borderSubCard cardShadowSecondary p-4 w-[90%] md:w-[50%] rounded-xl`}>
         <Image
         alt="logo_oruphones"
         src={"/assets/logo.svg"}
         width={70}
         height={70}
         />
-        {authType==="login"?<LoginForm setAuthType={setAuthType}/>:"Register"}
+        {authType==="login"?<LoginForm setAuthType={setAuthType}/>:<RegisterForm setAuthType={setAuthType}/>}
       </div>
     </div>  
   )

@@ -29,7 +29,7 @@ const GeneralInfoForm = ({preFillData,refetch,closeModal}) => {
   return (
     <form className='flex flex-col gap-2  font-medium' onSubmit={handleSubmit}>
        <label htmlFor="" className='text-textLabel'>{preFillData.labelName}</label>
-       <input type="text" className='border-2 border-borderSecondary w-full p-3 outline-none focus:border-2 focus:border-borderPrimary rounded-xl' value={fieldValue} onChange={(e)=>setFieldValue(e.target.value)}/>
+       <input type="text" className='inputFormStyle' value={fieldValue} onChange={(e)=>setFieldValue(e.target.value)}/>
        <Button
        text={isLoading?"Updating...":"Update"}
        className={`px-7 py-2 text-sm ${isLoading?"bg-gray-400/70 text-white":""}`}

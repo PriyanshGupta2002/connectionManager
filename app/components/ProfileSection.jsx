@@ -23,9 +23,9 @@ const ProfileSection = ({userData,refetch}) => {
         </div>
         <div className="bg-cardSecondary  cardShadowSecondary border-1 border-borderSubCard p-3 flex flex-col rounded-xl lg:border-0 lg:shadow-none lg:border-none lg:bg-none lg:p-0 lg:flex-1">
           <ProfessionalDetailsHeader/>
-          <ProfessionalCertifications certifications={userData?.professionalDetails?.certification}/>
-          <ProfessionalExperience experiences={userData?.professionalDetails?.experiences}/>
-          <ProfessionalEducation education={userData.professionalDetails.education}/>
+          <ProfessionalCertifications certifications={userData?.professionalDetails?.certification} refetch={refetch}/>
+          <ProfessionalExperience experiences={userData?.professionalDetails?.experiences}  refetch={refetch}/>
+          <ProfessionalEducation education={userData.professionalDetails.education}  refetch={refetch}/>
         </div>
     </div>      
 </div>

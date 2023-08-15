@@ -1,44 +1,46 @@
 "use client"
-import Navbar from '@/app/components/Navbar'
 import ProfileSection from '@/app/components/ProfileSection'
-import React,{useState,useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { newRequest } from '@/lib/utils'
+import { useQuery } from '@tanstack/react-query'
+
 import { useUserProvider } from '@/context/UserContext'
 
-const page = () => {
-  const {data:session,status} = useSession()
-  const {setUserInfo} = useUserProvider()
+const Page = () => {
+  const { data: session, status } = useSession()
+  const { setUserInfo } = useUserProvider()
   const router = useRouter()
-  if(status==="unauthenticated") {
-    router.push("/")
-  }
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/")
+    }
+  }, [status])
+
   const id = session?.user?.id
 
-
-  const { isLoading, error, data,refetch } = useQuery({
-    queryKey: [id,"userInfo"],
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: [id, "userInfo"],
     queryFn: () => axios.get(`/api/user/getUserInfo/${id}`).then((res) => {
       return res.data;
     }),
-    enabled:id?true:false
+    enabled: id ? true : false
   })
-  useEffect(() => {
-      if (data) {
-        setUserInfo(data)
-      }
-  }, [data])
-  
 
-  if(isLoading) return "Loading...."
+  useEffect(() => {
+    if (!isLoading && data) {
+      setUserInfo(data);
+    }
+  }, [isLoading, data]);
+
+  if (isLoading) return <h1 className='text-center mt-9 text-textLabel text-xl'>Loading your profile...</h1>
   return (
     <div className="p-0">
-        <ProfileSection userData={data} refetch={refetch}/>
+      <ProfileSection userData={data} refetch={refetch} />
     </div>
   )
 }
 
-export default page
+export default Page;

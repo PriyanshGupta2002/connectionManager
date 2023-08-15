@@ -1,9 +1,8 @@
 "use client"
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Button from './Button'
 import {signIn, useSession} from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 const LoginForm = ({setAuthType}) => {
     
   const router = useRouter()
@@ -15,13 +14,25 @@ const LoginForm = ({setAuthType}) => {
         email:"",
         password:""
     })
+    const [error,setError] = useState("")
+    useEffect(() => {
+      if(error){
+        setTimeout(() => {
+          setError("")
+        }, 2000);
+      }
+    }, [error])
+    
     const handleChange=(e)=>{
         setformData({...formData,[e.target.name]:e.target.value})
     }
     const handleSubmit=async(e)=>{
         e.preventDefault()
          const user = await signIn("credentials",{...formData,redirect:false})
-         if(user.error) return
+         if(user.error) {
+          setError("Some error occured.Please check your credentials")
+          return
+         }
          router.push(`/profile`)
 
     }
@@ -41,9 +52,11 @@ const LoginForm = ({setAuthType}) => {
          text={"Login"}
          />
         </form>
+        
         <span className="text-textPrimary font-medium p-3 cursor-pointer " onClick={()=>setAuthType("register")}>
           <small className="text-textLabel cursor-none pointer-events-none">Don't have an account yet?</small> Register Now
         </span>
+        {error && <h2 className='text-sm text-red-500 p-3'>{error}</h2>}
          </>
   )
 }

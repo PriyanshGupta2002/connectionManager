@@ -33,7 +33,9 @@ module.exports = {
         professionalHeaderTextColor:"var(--professional-header-text-color)",
         primaryBlue:"var(--primary-blue)",
         profileAvatarBorder:"var(--profile-avatar-border)",
-        loadingBtnBgColor:"var(--loading-btn-bg-color)"
+        loadingBtnBgColor:"var(--loading-btn-bg-color)",
+        sidebarBgColor:"var(--sidebar-bg-color)",
+        connectionBtnBgColor:"var(--connection-btn-bg-color)"
       },
     },
   },

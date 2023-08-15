@@ -1,4 +1,7 @@
+"use client"
+import { UserContextProvider, useUserProvider } from "@/context/UserContext"
 import Navbar from "../components/Navbar"
+import Sidebar from "../components/Sidebar"
 
 
 export const metadata = {
@@ -7,12 +10,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const {showSideBar} = useUserProvider()
   return (
-    <html lang="en">
-      <body>
+    <div>
+        {showSideBar && <Sidebar/>}
         <Navbar/>
         {children}
-        </body>
-    </html>
+    </div>
   )
 }

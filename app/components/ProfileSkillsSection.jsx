@@ -7,22 +7,24 @@ import {useState} from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useUserProvider } from '@/context/UserContext'
 import axios from 'axios'
+import Empty from './Empty'
 const ProfileSkillsSection = ({skills,refetch}) => {
-    let [isOpen, setIsOpen] = useState(false)
-    const [type, setType] = useState(null)
     const [selectedSkill, setselectedSkill] = useState(null)
     const {userInfo} = useUserProvider()
+  // const {queryClient,closeModal,openModal,isOpen,type,setType} = useUserProvider()
+  let [isOpen, setIsOpen] = useState(false);
+  const [type, setType] = useState(null);
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
-  
+
   const {mutate,isLoading} = useMutation({
     mutationFn:async(body)=>{
       const {userId,recordId}=body
@@ -41,6 +43,7 @@ const ProfileSkillsSection = ({skills,refetch}) => {
     }
     mutate(body)
   }
+  const [currentIdx, setCurrentIdx] = useState(null)
 
   return (
     <div className="border-2 border-borderSubCard p-4 mt-2 rounded-md font-medium text-textSecondary">
@@ -83,16 +86,23 @@ const ProfileSkillsSection = ({skills,refetch}) => {
           setselectedSkill({...skill})
         }}
         />
-            <Button
-        className="px-5 py-2 text-xs border-2 bg-red-500 text-white border-none"
-        text={"Delete"}
-        onClick={()=>{
-          handleDelete(skill._id)
-        }}
-        />
+             <Button
+            text={currentIdx===idx && isLoading ?"Deleting...":"Delete"}
+          className={
+            "text-xs px-5 py-2 bg-red-500 text-white border-none outline-none disabled:bg-loadingBtnBgColor disabled:text-white"
+          }
+          onClick={()=>{
+            setCurrentIdx(idx)
+            handleDelete(skill._id)
+          }}
+          type={"Submit"}
+          disabled={isLoading && currentIdx===idx}
+          />
         </div>
             </div>
-          )): "Add Your Skills..."}
+          )): <Empty
+          text={"Showcase your skills"}
+          />}
         </div>
     </div>
   )

@@ -1,19 +1,47 @@
-import Image from 'next/image'
-import React from 'react'
+"use client"
+import React,{useState} from 'react'
 import Button from './Button'
 import ExperienceCard from './ExperienceCard'
+import Empty from './Empty'
+import Modal from './Modal'
+import ExperienceForm from './ExperienceForm'
 
-const ProfessionalExperience = ({experiences}) => {
+const ProfessionalExperience = ({experiences,refetch}) => {
+  let [isOpen, setIsOpen] = useState(false);
+  const [type, setType] = useState(null);
+  const [selectedExperience, setSelectedExperience] = useState(null)
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <div className="border-2 border-borderSubCard p-3 flex flex-col gap-3 mt-2 rounded-xl">
+      <Modal
+      Form={<ExperienceForm
+      type={type}
+      refetch={refetch}
+      closeModal={closeModal}
+      selectedExperience={selectedExperience}
+      setSelectedExperience={setSelectedExperience}
+      />}
+      closeModal={closeModal}
+      isOpen={isOpen}
+      />
             <div className="flex items-center justify-between">
                 <span className="text-textSecondary">Experience</span>
                 <Button
                 className="px-7 py-2 text-xs"
-                text="Edit"
+                text="Add"
+                onClick={()=>{
+                  openModal()
+                  setType("add")
+                }}
                 />
             </div>
-            {experiences?.map((item,idx)=>(
+            {experiences.length>0 ?experiences?.map((item,idx)=>(
               <ExperienceCard
               key={idx}
               startDate={item.startDate}
@@ -21,22 +49,13 @@ const ProfessionalExperience = ({experiences}) => {
               jobType={item.jobType}
               designation={item?.designation}
               company={item?.company}
+              setSelectedExperience={setSelectedExperience}
+              setType={setType}
+              openModal={openModal}
+              _id={item._id}
+              refetch={refetch}
               />
-            ))}
-            {/* <ExperienceCard
-            startDate="7 years (2014-2021)"
-            jobType="Internship"
-            designation="Full Stack Developer"
-            company="Oruphones"
-            key="1"
-            />
-            <ExperienceCard
-            startDate="6 months (2014)"
-            jobType="Internship"
-            designation="Full Stack Developer"
-            company="Oruphones"
-            key="2"
-            /> */}
+            )): <Empty text={"Showcase your experiences"}/>}
     </div>
   )
 }

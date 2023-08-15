@@ -58,7 +58,7 @@ const SkillForm = ({closeModal,type,refetch,selectedSkill,setSelectedSkill}) => 
         </div>
       <div className='flex flex-col gap-2 mt-3'>
       <label htmlFor="skillName">Skill Name</label>
-      <input ref={skillRef} type="text" required className='border-2 border-borderSecondary outline-none p-2 focus:border-borderPrimary'/>
+      <input ref={skillRef} type="text" required className='inputFormStyle'/>
       </div>
       <Button disabled={isLoading}  className={`text-sm px-7 mt-4 py-2  disabled:bg-loadingBtnBgColor`} text={isLoading?"Adding...":"Add"}/>
       </div>
@@ -69,7 +69,7 @@ const SkillForm = ({closeModal,type,refetch,selectedSkill,setSelectedSkill}) => 
             <RxCross1 className='cursor-pointer text-textPrimary' onClick={()=>closeModal()}/>
         </div>      
       <label htmlFor="skillName" className='text-textLabel'>Skill</label>
-      <input value={selectedSkill?.skillName} onChange={(e)=>setSelectedSkill({...selectedSkill,skillName:e.target.value})} type="text" required className='border-2 border-borderSecondary outline-none p-2 focus:border-borderPrimary'/>
+      <input value={selectedSkill?.skillName} onChange={(e)=>setSelectedSkill({...selectedSkill,skillName:e.target.value})} type="text" required className='inputFormStyle'/>
       <Button disabled={isLoading}  className={`text-sm px-7 mt-4 py-2  disabled:bg-loadingBtnBgColor`} text={isLoading?"Updating...":"Update"}/>
       </div>
 
