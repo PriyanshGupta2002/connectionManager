@@ -24,10 +24,10 @@ const Sidebar = () => {
   
 
   return (
-    <div className="relative z-50 sidebarShadow min-h-screen">
+    <div className="relative z-50 sidebarShadow">
       {showSideBar && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-20"
+          className="fixed inset-0 bg-black w-full h-full opacity-50 z-20"
           onClick={closeSidebar}
         ></div>
       )}
