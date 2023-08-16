@@ -7,7 +7,7 @@ npm install
 
 Setup your env file in root of your folder
 ### To generate the NEXTAUTH_SECRET run command openssl rand -base64 32
-- MONGO_URI = mongodb+srv://<UserName>:<Passowrd>@cluster0.iv9bk.mongodb.net/?retryWrites=true&w=majority
+- MONGO_URI = <your_mongoDb_connection_string>
 - NEXTAUTH_URL="<Your_website_base_url>"
 - NEXTAUTH_SECRET= <your_secret>
 - BASE_URL = <your_base_url>
