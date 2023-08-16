@@ -49,7 +49,7 @@ const RegisterForm = ({ setAuthType }) => {
 
 
   return (
-    <form className={`flex  flex-col flex-wrap lg:gap-6`} onSubmit={handleSubmit}>
+    <form className={`flex  flex-col flex-wrap `} onSubmit={handleSubmit}>
       <div className="flex flex-col lg:flex-1 gap-3 w-full">
         <div className="flex items-center flex-wrap justify-between mt-4">
           <Image
