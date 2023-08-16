@@ -28,15 +28,14 @@ const ProfilePhotoSection = ({image,refetch}) => {
 
   return (
     <div className="flex items-center justify-between">
+      <div className='w-24 h-24 relative'>
     <Image
     alt="Profile"
     src={image || "/assets/profile.svg"}
-    width={71.25}
-    height={71.25}
-    className="bg-profileBgColor rounded-full"
+    fill
+    className="bg-profileBgColor rounded-full object-cover"
     />
-
-    {/* <Button text={"Upload"} className="px-5 py-3  text-xs font-medium"/> */}
+    </div>
     <CldUploadButton
     uploadPreset='aoq6nkte'
     onUpload={(result)=>{

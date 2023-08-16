@@ -31,13 +31,14 @@ const ConnectionCard = ({item,refetch,userId,type,otherRefetch}) => {
                 </>}
                 </div>
             </div>
+            <div className='relative w-20 h-20 '>
             <Image
             src={item.image || "/assets/profile.svg" }
-            className='bg-profileBgColor rounded-full'
-            width={80}
-            height={80}
+            className='bg-profileBgColor rounded-full object-cover'
             alt='profile-picture'
+            fill
             />
+            </div>
         </div>
         <Button
            text={

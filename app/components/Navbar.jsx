@@ -25,7 +25,7 @@ const Navbar = () => {
                     className="cursor-pointer"
                     />
                 </div>
-                <div className="flex items-start gap-3 lg:items-center">
+                <div className="flex items-center gap-4 lg:items-center">
                     <Image
                     alt="notification"
                     height={24}
@@ -33,22 +33,24 @@ const Navbar = () => {
                     src="/assets/Notification.svg"
                     className="cursor-pointer"
                     />
+                    <div className="w-8 h-8 relative lg:hidden">
                     <Image
                     alt="profile"
-                    height={24}
-                    width={24}
+                    fill
                     src={userInfo?.image || "/assets/profile.svg"}                    
-                    className="bg-profileBgColor rounded-full cursor-pointer lg:hidden"
+                    className="bg-profileBgColor rounded-full object-cover cursor-pointer "
                     />
+                        </div>
                     <div className="hidden lg:flex items-center gap-5 justify-between border-2 border-profileAvatarBorder rounded-md p-2">
                           <div className="flex items-center gap-2">
+                            <div className='w-10 h-10 relative'>
                               <Image
                               alt="profile-avatar"
                               src={userInfo?.image || "/assets/profile.svg"} 
-                              width={34}
-                              height={34}
-                              className="bg-profileBgColor rounded-md"
+                                fill
+                              className="bg-profileBgColor rounded-md object-cover"
                               />
+                              </div>
                               <div className="flex flex-col font-medium text-textPrimary">
                                   <small>Welcome Back,</small>
                                   <span>{userInfo?.name}</span>
