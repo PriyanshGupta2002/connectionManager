@@ -6,6 +6,7 @@ export const UserContextProvider = ({ children }) => {
 
   const [userInfo, setUserInfo] = useState("")
   const [showSideBar, setShowSideBar] = useState(false);
+  
   const values = {
     userInfo,
     setUserInfo,

@@ -2,7 +2,7 @@
 import ProfileSection from '@/app/components/ProfileSection'
 import React, { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 
@@ -26,7 +26,6 @@ const Page = () => {
     queryFn: () => axios.get(`/api/user/getUserInfo/${id}`).then((res) => {
       return res.data;
     }),
-    enabled: id ? true : false
   })
 
   useEffect(() => {

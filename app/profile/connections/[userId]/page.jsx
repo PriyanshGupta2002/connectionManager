@@ -1,17 +1,35 @@
 "use client"
 import ConnectionHeader from '@/app/components/ConnectionHeader'
 import ConnectionSection from '@/app/components/ConnectionSection'
+import { useUserProvider } from '@/context/UserContext'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const page = ({params}) => {
   const {userId} = params
   const router = useRouter()
   const {status} = useSession()
   if(status==="unauthenticated") router.push("/")
+  const {setUserInfo} = useUserProvider()
+
+  const { data:profileData,isLoading:profileLoading } = useQuery({
+    queryKey: [userId, "userInfo"],
+    queryFn: () => axios.get(`/api/user/getUserInfo/${userId}`).then((res) => {
+      return res.data;
+    }),
+  })
+
+  useEffect(() => {
+    if (!profileLoading && profileData) {
+      setUserInfo(profileData);
+    }
+  }, [profileLoading, profileData]);
+
+
+
   const { isLoading, error, data,refetch } = useQuery({
     queryKey: [userId,"connections"],
     queryFn: () => axios.get(`/api/user/getConnections/${userId}`).then((res) => {
