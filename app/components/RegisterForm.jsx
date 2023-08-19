@@ -49,7 +49,7 @@ const RegisterForm = ({ setAuthType }) => {
 
 
   return (
-    <form className={`flex  flex-col flex-wrap lg:gap-6`} onSubmit={handleSubmit}>
+    <form className={`flex  flex-col  lg:gap-6 my-4`} onSubmit={handleSubmit}>
       <div className="flex flex-col lg:flex-1 gap-3 w-full">
         <div className="flex items-center flex-wrap justify-between mt-4">
           <Image
@@ -139,9 +139,9 @@ const RegisterForm = ({ setAuthType }) => {
       disabled={isLoading}
       type={"submit"}
       />
-        <span className="text-textPrimary font-medium p-3 cursor-pointer " onClick={()=>setAuthType("login")}>
-          <small className="text-textLabel cursor-none pointer-events-none">Have an account?</small> Login Now
-        </span>
+        <small  className="text-textLabel mt-2 md:mt-0">
+          Have an account? <span className="text-textPrimary text-base font-medium my-5 cursor-pointer" onClick={()=>setAuthType("login")}>Login Now</span> 
+        </small>
         {err && <h2 className='text-sm text-red-500 p-3'>{err}</h2>}
     </form>
   );
