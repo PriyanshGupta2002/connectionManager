@@ -38,7 +38,7 @@ const LoginForm = ({setAuthType}) => {
     }
   return (
     <>
-    <form action="" className="my-5" onSubmit={handleSubmit}>
+    <form action="" className="mt-7" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 mb-5">
             <label htmlFor="email" className="text-textLabel  text-base font-medium">Email</label>
             <input type="text" className="border-2 border-borderSubCard focus:border-borderPrimary p-2 h-12 outline-none rounded-xl" placeholder="johndoe@gmail.com"  value={formData.email} onChange={handleChange} name='email'/>

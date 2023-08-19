@@ -21,6 +21,7 @@ const ConnectionSection = ({ connections, refetch, isLoading, userId,otherConnec
           ))}
       </div>
       <h1 className="mt-6 text-2xl text-textLabel font-normal">People you can also connect</h1>
+      {otherLoading && <h1 className="text-center mt-7">Finding other people...</h1>}
       <div className="mt-3 p-2 grid">
         {otherConnections &&
           otherConnections.map((item, idx) => (

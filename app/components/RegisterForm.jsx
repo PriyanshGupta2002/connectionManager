@@ -9,7 +9,7 @@ import axios from "axios";
 const RegisterForm = ({ setAuthType }) => {
 
 
-
+const [imgUrl, setImgUrl] = useState("")
 
 
 
@@ -30,39 +30,54 @@ const RegisterForm = ({ setAuthType }) => {
     }
   }, [err])
 
-  const {mutate,isLoading,error} = useMutation({
+  const {mutate,isLoading} = useMutation({
     mutationFn:async(reqData)=>{
+      try {
+        
         return await axios.post("/api/register",reqData)
+        
+      } catch (error) {
+        setError("User already exists")
+        return
+      }
     },
+    onSuccess:()=>{
+      setAuthType("login")
+    }
   })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(error || formData.bio.trim().length===0 || formData.email.trim().length===0 || formData.name.trim().length===0 || formData.password.trim().length===0 || formData.phone.trim().length===0  ){
+    if(formData.bio.trim().length===0 || formData.email.trim().length===0 || formData.name.trim().length===0 || formData.password.trim().length===0 || formData.phone.trim().length===0  ){
       setError("Cannot register. Make sure to fill all details.")
       return
     }
-    mutate(formData)
-    setAuthType("login")
+
+      mutate({...formData,image:imgUrl})
+
+
+   
+    // setAuthType("login")
 
   };
 
 
   return (
-    <form className={`flex  flex-col  lg:gap-6 my-4`} onSubmit={handleSubmit}>
+    <form className={`flex  flex-col flex-wrap lg:gap-6`} onSubmit={handleSubmit}>
       <div className="flex flex-col lg:flex-1 gap-3 w-full">
         <div className="flex items-center flex-wrap justify-between mt-4">
+          <div className="w-28 h-28 relative">
           <Image
             alt="Profile"
-            src={formData.image || "/assets/profile.svg"}
-            width={71.25}
-            height={71.25}
-            className="bg-profileBgColor rounded-full"
-          />
+            src={imgUrl|| "/assets/profile.svg"}
+            fill
+            className="bg-profileBgColor rounded-full object-cover"
+            />
+            </div>
           <CldUploadButton
             uploadPreset="aoq6nkte"
             onUpload={(result) => {
-              setFormData({...formData,image:result.info.secure_url});
+              setImgUrl(result.info.secure_url);
             }}
             className="px-5 py-3 bg-buttonBgPrimaryColor  text-xs font-medium text-buttonTextPrimaryColor rounded-full"
           />

@@ -10,7 +10,7 @@ const ProfessionalDetailsHeader = () => {
         </div>
         <Image
         alt="stars"
-        src="/assets/stars.svg"
+        src="/assets/Stars.svg"
         width={130}
         height={130}
         />
