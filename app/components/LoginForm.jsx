@@ -53,9 +53,9 @@ const LoginForm = ({setAuthType}) => {
          />
         </form>
         
-        <span className="text-textPrimary font-medium p-3 cursor-pointer " onClick={()=>setAuthType("register")}>
-          <small className="text-textLabel cursor-none pointer-events-none">Don't have an account yet?</small> Register Now
-        </span>
+        <small  className="text-textLabel mt-2 md:mt-0">
+          Don't have an account? <span className="text-textPrimary text-base font-medium my-5 cursor-pointer" onClick={()=>setAuthType("register")}>Register Now</span> 
+        </small>
         {error && <h2 className='text-sm text-red-500 p-3'>{error}</h2>}
          </>
   )
