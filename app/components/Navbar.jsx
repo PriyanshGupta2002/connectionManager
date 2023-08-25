@@ -6,7 +6,7 @@ import { useUserProvider } from '@/context/UserContext'
 const Navbar = () => {
     const {userInfo,setShowSideBar} = useUserProvider()
   return (
-    <nav className='sticky top-0 z-40 bg-white'>
+    <nav className='sticky top-0  bg-white  z-10'>
         <div className="max-w-7xl p-5 lg:p-3 flex justify-between m-auto items-center">
                 <div className="flex items-start gap-3">
                     <Image
